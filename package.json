@@ -1,0 +1,11 @@
+{
+  "name": "node-pokemon-api",
+  "version": "1.0.0",
+  "description": "This project is a Rest API to displays and manage some Pokemon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ksim",
+  "license": "ISC"
+}
