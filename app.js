@@ -1,14 +1,8 @@
 const express = require('express');
+let pokemons = require('./mock-pokemons');
 
 const app = express();
 const port = 3000;
-
-// Example data
-const pokemons = [
-    { id: 1, name: 'Bulbasaur', type: 'Grass/Poison' },
-    { id: 2, name: 'Ivysaur', type: 'Grass/Poison' },
-    { id: 3, name: 'Charmander', type: 'Fire' },
-  ];
 
 app.get('/', (req,res) => res.send('Hello, Express ! '));
 
