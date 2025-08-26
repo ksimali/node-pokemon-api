@@ -6,12 +6,10 @@ const app = express();
 const port = 3000;
 
 //middleware to log all receive requests
-const logger = (req, res, next) => {
+app.use((req, res, next) => {
     console.log(`URL : ${req.url}`);
     next();
-}
-
-app.use(logger);
+});
 
 // Endpoints
 app.get('/', (req,res) => res.send('Hello, Express ! '));
