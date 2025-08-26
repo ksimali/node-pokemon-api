@@ -1,8 +1,10 @@
-const success = (message, data) => {
+exports.success = (message, data) => {
     return {
-        message: message,
+        message: message, 
         data: data
     }     
 }
 
-exports.success
+
+
+
