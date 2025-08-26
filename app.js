@@ -1,15 +1,18 @@
 const express = require('express');
+const morgan = require('morgan');
 const {success} = require('./helper');
 let pokemons = require('./mock-pokemons');
 
 const app = express();
 const port = 3000;
 
-//middleware to log all receive requests
+/** middleware to log all receive requests
 app.use((req, res, next) => {
     console.log(`URL : ${req.url}`);
     next();
 });
+*/
+app.use(morgan('dev'));
 
 // Endpoints
 app.get('/', (req,res) => res.send('Hello, Express ! '));
