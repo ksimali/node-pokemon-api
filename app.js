@@ -9,10 +9,12 @@ app.get('/', (req,res) => res.send('Hello, Express ! '));
 
 app.get('/api/pokemons', (req,res) =>{
     const totalPokemon = pokemons.length;
-    res.json({
-        message: `Il y a ${totalPokemon} pokémons dans le pokédex pour le moment.`,
-        data: pokemons
-    });
+    const message = `Il y a ${totalPokemon} pokémons dans le pokédex pour le moment.`;
+    if(pokemons) {
+        res.json(success(message,pokemons));
+    }else {
+        res.status(404).send({ error: 'Pokemons not found' });
+    }
 });
 
 app.get('/api/pokemons/:id', (req,res) =>{
