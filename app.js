@@ -6,6 +6,14 @@ const port = 3000;
 
 app.get('/', (req,res) => res.send('Hello, Express ! '));
 
+app.get('/api/pokemons', (req,res) =>{
+    const totalPokemon = pokemons.length;
+    res.json({
+        message: `Il y a ${totalPokemon} pokémons dans le pokédex pour le moment.`,
+        data: pokemons
+    });
+});
+
 app.get('/api/pokemons/:id', (req,res) =>{
     const id = parseInt(req.params.id);
     const pokemon = pokemons.find(p => p.id == id);
