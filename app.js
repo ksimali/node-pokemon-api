@@ -1,11 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
+const { Sequelize } = require('sequelize');
 const {success, getUniqueId} = require('./helper');
 let pokemons = require('./mock-pokemons');
+const { error } = require('console');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 /** middleware to log all receive requests
 app.use((req, res, next) => {
@@ -13,10 +15,30 @@ app.use((req, res, next) => {
     next();
 });
 */
+
+// Middleware 
 app
  .use(favicon(__dirname + '/favicon.ico'))
  .use(morgan('dev'))
  .use(express.json())
+
+// Mariadb connexion configuration
+const sequelize = new Sequelize(
+    'pokedex',
+    'root',
+    'root',
+    {
+        host: 'localhost',
+        dialect: 'mariadb',
+        dialectOptions: {timezone:'Etc/GMT-2'},
+        logging: false
+    },
+);
+
+// database connexion
+sequelize.authenticate()
+.then( () => console.log('Connexion à la base de donnée réussie!'))
+.catch(error => console.error(`Impossible de se connecter à la bdd ${error}`))
 
 // Endpoints
 app.get('/', (req,res) => res.send('Hello, Express ! '));
